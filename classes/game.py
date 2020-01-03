@@ -15,6 +15,12 @@ class bColors:
     def in_red_bold(text):
         return str(bColors.FAIL + bColors.BOLD + str(text) + bColors.ENDC)
 
+    def in_green(text):
+        return str(bColors.OKGREEN + str(text) + bColors.ENDC)
+
+    def in_blue(text):
+        return str(bColors.OKBLUE + str(text) + bColors.ENDC)
+
 
 class Person:
     def __init__(self, hp, mp, atk, df, magic):
@@ -42,6 +48,11 @@ class Person:
             self.hp = 0
         return self.hp
 
+    def healing(self, dmg):
+        self.hp += dmg
+        if self.hp > self.max_hp:
+            self.hp = self.max_hp
+
     def get_hp(self):
         return self.hp
 
@@ -56,15 +67,6 @@ class Person:
 
     def reduce_mp(self, cost):
         self.mp -= cost
-        '''
-        if self.mp < 0:
-            self.mp = 0
-        '''
-    def get_spell_name(self, i):
-        return self.magic[i]["name"]
-
-    def get_mp_cost(self, i):
-        return self.magic[i]["cost"]
 
     def choose_action(self):
         i = 1
